@@ -28,7 +28,7 @@
             } else if(strlen($inputId) !== 7) {// Checking if the id entered consists of 7 digits
                 print_r("Student ids must consist of 7 digits!");
                 exit;
-            } else if(file_exists($dir . '/' . $file)) {// Checking if the id entered is unique
+            } else if(file_exists($dir . '/' . $file) || file_exists($dir)) {// Checking if the id entered is unique
                 print_r("Student id already exists!");
                 exit;
             }
@@ -142,11 +142,11 @@
             }
 
             // Create the folder and file paths
-            $path = $students->studentDir . substr($studentId, 0, 2) . '/';
+            $path = $students->studentDir . substr($studentId, 0, 2);
             $filename = $studentId . $students->fileExt;;
 
             // Remove the JSON file
-            if (unlink($path . $filename)) {
+            if (unlink($path  . '/' . $filename) && rmdir($path)) {
                 print_r("Student deleted successfully");
             } else {
                 print_r("There was a error deleting the file " . $filename);
