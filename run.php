@@ -38,7 +38,7 @@
                     'id' => (int)$inputId,
                     'name' => $inputName,
                     'surname' => $inputSurname,
-                    'age' => (int)$inputAge,
+                    'age' => $inputAge,
                     'curriculum' => $inputCurriculum,
                 )
             );
@@ -64,7 +64,7 @@
 
                 switch ($filter) {
                     case strpos($filter, 'id=') !== false:
-                        $studentData = $students->filter_students($allData, 'id', $students->get_value($filter, 'int'));
+                        $studentData = $students->filter_students($allData, 'id', (int)$students->get_value($filter));
                         break;
 
                     case strpos($filter, 'name=') !== false:
@@ -76,7 +76,7 @@
                         break;
 
                     case strpos($filter, 'age=') !== false:
-                        $studentData = $students->filter_students($allData, 'age', $students->get_value($filter, 'int'));
+                        $studentData = $students->filter_students($allData, 'age', $students->get_value($filter));
                         break;
                         
                     case strpos($filter, 'curriculum=') !== false:
@@ -123,7 +123,7 @@
                     'id' => $json_data['id'],
                     'name' => $_name !== '' ? $_name : $json_data['name'],
                     'surname' => $_surname !== '' ? $_surname : $json_data['surname'],
-                    'age' => $_age !== '' ? (int)$_age : $json_data['age'],
+                    'age' => $_age !== '' ? $_age : $json_data['age'],
                     'curriculum' => $_curriculum !== '' ? $_curriculum : $json_data['curriculum'],
                 )
             );

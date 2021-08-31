@@ -8,16 +8,8 @@
          * Returns the value as a string by default 
          * unless you specify int
          */
-        function get_value($str, $type = 'string'){
-            $arg = substr($str, strpos($str, "=") + 1);
-
-            if($type === 'int') {
-                $value = (int)$arg;
-            } else {
-                $value = $arg;
-            }
-
-            return $value;
+        function get_value($str){
+            return substr($str, strpos($str, "=") + 1);
         }
         
         /**
